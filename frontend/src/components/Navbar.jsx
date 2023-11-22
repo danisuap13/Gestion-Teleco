@@ -7,7 +7,7 @@ export default function ButtonAppBar() {
   return (
     <nav className="flex items-center justify-between">
       <Link to="/">
-        <h1 className="text-white font-bold text-4xl my-4">Tasks</h1>
+        <h1 className="text-white font-bold text-4xl my-4">Gestión de Fallas y Mantenimiento en Infraestructura de Telecomunicaciones</h1>
       </Link>
 
       {location.pathname === "/tasks/new" || location.pathname.includes('/tasks/') ? (
