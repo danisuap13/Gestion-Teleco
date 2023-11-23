@@ -3,6 +3,7 @@ import TaskCard from "./TaskCard";
 
 const TasksList = () => {
   const [tasks, setTasks] = useState([]);
+  const [mantenimientos, setMantenimientos] = useState([])
 
   const loadTasks = async () => {
     const response = await fetch("http://localhost:4000/falla");
@@ -10,16 +11,32 @@ const TasksList = () => {
     console.log(data);
     setTasks(data);
   };
+  const loadMantenimientos = async () => {
+    const response = await fetch("http://localhost:4000/mantenimiento");
+    const data = await response.json();
+    console.log(data);
+    setMantenimientos(data);
+  };
 
   useEffect(() => {
     loadTasks();
+    loadMantenimientos();
   }, []);
 
   return (
     <>
-      {tasks.map((task) => (
-        <TaskCard key={task.id_falla} task={task} />
-      ))}
+    <div className="flex">
+      <div>
+        {tasks.map((task) => (
+          <TaskCard key={task.id_falla} task={task} />
+        ))}
+      </div>
+      <div>
+        {mantenimientos.map((mantenimiento) => (
+          <TaskCard key={mantenimiento.id_mantenimiento} mantenimiento={mantenimiento} />
+        ))}
+      </div>
+    </div>
     </>
   );
 };
