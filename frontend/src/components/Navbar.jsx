@@ -16,7 +16,7 @@ export default function ButtonAppBar() {
         <span className="text-white ">Sistema de Gestión de Fallas y Mantenimiento de Equipos de Telecomunicaciones</span>
       </Link>
 
-      {location.pathname === "/tasks/new" || location.pathname.includes('/tasks/') ? (
+      {location.pathname === "/falla/new" || location.pathname.includes('/falla/') || location.pathname === '/mantenimiento/new' || location.pathname.includes('/mantenimiento')? (
         <button
           className="bg-slate-200 text-black font-bold py-2 px-4 rounded-lg my-2"
           onClick={() => navigate("/")}
@@ -27,13 +27,13 @@ export default function ButtonAppBar() {
         <div>
           <button
             className="bg-slate-200 text-black font-bold py-2 px-4 mr-4 rounded-lg my-2 "
-            onClick={() => navigate("/tasks/new")}
+            onClick={() => navigate("/mantenimiento/new")}
           >
             Programar Mantenimiento
           </button>
           <button
             className="bg-slate-200 text-black font-bold py-2 px-4 rounded-lg my-2"
-            onClick={() => navigate("/tasks/new")}
+            onClick={() => navigate("/falla/new")}
           >
             Añadir Falla
           </button>

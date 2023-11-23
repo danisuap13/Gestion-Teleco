@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import TaskForm from "./components/TaskForm";
 import TasksList from "./components/TasksList";
 import Navbar from "./components/Navbar";
+import TaskFormMantenimiento from "./components/TaskFormMantenimiento";
 
 function App() {
   return (
@@ -10,8 +11,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route index path="/" element={<TasksList />} />
-          <Route path="/tasks/new" element={<TaskForm />} />
-          <Route path="/tasks/:id/edit" element={<TaskForm />} />
+          <Route path="/falla/new" element={<TaskForm />} />
+          <Route path="/mantenimiento/new" element={<TaskFormMantenimiento />} />
+          <Route path="/falla/:id/edit" element={<TaskForm />} />
+          <Route path="/mantenimiento/:id/edit" element={<TaskFormMantenimiento/>} />
         </Routes>
       </main>
     </BrowserRouter>
