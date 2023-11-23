@@ -2,11 +2,11 @@ import { pool } from "../db.js";
 
 export const createTask = async (req, res, next) => {
   try {
-    const { title, description } = req.body;
+    const { id_falla, id_equipotel, descripcion, severidad, costo, estado } = req.body;
 
     const newTask = await pool.query(
-      "INSERT INTO task (title, description) VALUES($1, $2) RETURNING *",
-      [title, description]
+      "INSERT INTO task (id_falla, id_equipotel, descripcion, severidad, costo, estado) VALUES($1, $2, $3, $4, $5, $6) returning *",
+      [id_falla, id_equipotel, descripcion, severidad, costo, estado]
     );
 
     res.json(newTask.rows[0]);
@@ -27,11 +27,11 @@ export const getAllTasks = async (req, res, next) => {
 export const getTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query("SELECT * FROM task WHERE id = $1", [id]);
+	
+    const result = await pool.query("SELECT * FROM task WHERE id_falla = $1", [id]);
 
     if (result.rows.length === 0)
       return res.status(404).json({ message: "Task not found" });
-
     res.json(result.rows[0]);
   } catch (error) {
     next(error);
@@ -41,11 +41,11 @@ export const getTask = async (req, res) => {
 export const updateTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description } = req.body;
+    const { id_falla, id_equipotel, descripcion, severidad, costo, estado} = req.body;
 
     const result = await pool.query(
-      "UPDATE task SET title = $1, description = $2 WHERE id = $3 RETURNING *",
-      [title, description, id]
+      "UPDATE task SET id_falla = $2, id_equipotel = $3, descripcion = $4, severidad = $5, costo = $6, estado = $7 WHERE id_falla = $1 RETURNING *",
+      [id, id_falla, id_equipotel, descripcion, severidad, costo, estado]
     );
 
     if (result.rows.length === 0)
@@ -60,7 +60,7 @@ export const updateTask = async (req, res) => {
 export const deleteTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query("DELETE FROM task WHERE id = $1", [id]);
+    const result = await pool.query("DELETE FROM task WHERE id_falla = $1", [id]);
 
     if (result.rowCount === 0)
       return res.status(404).json({ message: "Task not found" });

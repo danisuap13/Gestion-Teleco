@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const TaskForm = () => {
   const [task, setTask] = useState({
     title: "",
-    description: "",
+    descripcion: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -20,7 +20,7 @@ const TaskForm = () => {
   const loadTask = async (id) => {
     const res = await fetch("http://localhost:4000/tasks/" + id);
     const data = await res.json();
-    setTask({ title: data.title, description: data.description });
+    setTask({ title: data.title, descripcion: data.descripcion });
   };
 
   const handleDelete = async (id) => {
@@ -74,27 +74,73 @@ const TaskForm = () => {
           {params.id ? "Update Task" : "Create Task"}
         </h3>
         <input
-          type="text"
+          type="number"
           name="title"
-          placeholder="Write your title"
+          placeholder="Id Equipo de Telecomunicaciones"
           className="border border-gray-400 p-2 rounded-md block my-2 w-full"
           onChange={handleChange}
-          value={task.title}
+          value={task.id_equipotel}
           autoFocus
         />
         <textarea
-          name="description"
+          name="descripcion"
           rows={4}
-          placeholder="Write your description"
+          placeholder="Escriba su descripcion"
           className="border border-gray-400 p-2 rounded-md block my-2 w-full"
           onChange={handleChange}
-          value={task.description}
+          value={task.descripcion}
         ></textarea>
+
+			<input
+          type="text"
+          name="severidad"
+          placeholder="Severidad"
+          className="border border-gray-400 p-2 rounded-md block my-2 w-full"
+          onChange={handleChange}
+          value={task.severidad}
+          autoFocus
+        />
+			<input
+          type="number"
+          name="costo"
+          placeholder="Costo"
+          className="border border-gray-400 p-2 rounded-md block my-2 w-full"
+          onChange={handleChange}
+          value={task.costo}
+          autoFocus
+        />
+			<input
+          type="text"
+          name="estado"
+          placeholder="Estado del equipo"
+          className="border border-gray-400 p-2 rounded-md block my-2 w-full"
+          onChange={handleChange}
+          value={task.estado}
+          autoFocus
+        />
+			<input
+          type="date"
+          name="fecha_deteccion"
+          placeholder="Fecha de detección"
+          className="border border-gray-400 p-2 rounded-md block my-2 w-full"
+          onChange={handleChange}
+          value={task.fecha_deteccion}
+          autoFocus
+        />
+			<input
+          type="date"
+          name="fecha_finalizacion"
+          placeholder="Fecha de finalización"
+          className="border border-gray-400 p-2 rounded-md block my-2 w-full"
+          onChange={handleChange}
+          value={task.fecha_finalizacion}
+          autoFocus
+        />
 
         <div className="flex justify-between">
           <button
             type="submit"
-            disabled={!task.title || !task.description}
+            disabled={!task.title || !task.descripcion}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
           >
             {loading
