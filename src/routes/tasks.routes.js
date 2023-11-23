@@ -10,14 +10,14 @@ import {
 const router = Router();
 
 // create a task
-router.post("/tasks", createTask);
+router.post("/falla", createTask);
 
-router.get("/tasks", getAllTasks);
+router.get("/falla", getAllTasks);
 
-router.get("/tasks/:id", getTask);
+router.get("/falla/:id", getTask);
 
-router.put("/tasks/:id", updateTask);
+router.put("/falla/:id", updateTask);
 
-router.delete("/tasks/:id", deleteTask);
+router.delete("/falla/:id", deleteTask);
 
 export default router;

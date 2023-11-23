@@ -5,7 +5,7 @@ const TasksList = () => {
   const [tasks, setTasks] = useState([]);
 
   const loadTasks = async () => {
-    const response = await fetch("http://localhost:4000/tasks");
+    const response = await fetch("http://localhost:4000/falla");
     const data = await response.json();
     console.log(data);
     setTasks(data);
@@ -18,7 +18,7 @@ const TasksList = () => {
   return (
     <>
       {tasks.map((task) => (
-        <TaskCard key={task.id} task={task} />
+        <TaskCard key={task.id_falla} task={task} />
       ))}
     </>
   );
