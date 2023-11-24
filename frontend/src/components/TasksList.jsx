@@ -28,13 +28,13 @@ const TasksList = () => {
     <>
     <div className="flex">
       <div className="w-1/2 p-4">
-				<h1 className="text-white font-bold text-3xl text-center">Fallas</h1>
+				<h1 className="text-white font-bold text-3xl text-center mb-10">Fallas</h1>
         {tasks.map((task) => (
 					<TaskCard key={task.id_falla} task={task} />
 					))}
       </div>
       <div className="w-1/2 p-4">
-				<h1 className="text-white font-bold text-3xl text-center">Mantenimientos</h1>
+				<h1 className="text-white font-bold text-3xl text-center mb-10">Mantenimientos</h1>
         {mantenimientos.sort().map((mantenimiento) => (
           <TaskCardMantenimiento key={mantenimiento.id_mantenimiento} mantenimiento={mantenimiento} />
         ))}

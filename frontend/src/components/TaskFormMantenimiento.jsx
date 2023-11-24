@@ -13,6 +13,22 @@ const TaskFormMantenimiento = () => {
 		cedula:""
   });
   const [loading, setLoading] = useState(false);
+	const [cedulas, setCedulas] = useState([]);
+  const [equipos, setEquipos] = useState([]);
+
+  const loadEquipos = async () => {
+    const response = await fetch("http://localhost:4000/equipos");
+    const data = await response.json();
+    console.log(data);
+    setEquipos(data);
+  };
+
+  const loadCedulas = async () => {
+    const response = await fetch("http://localhost:4000/cedulas");
+    const data = await response.json();
+    console.log(data);
+    setCedulas(data);
+  };
 
   const navigate = useNavigate();
   const params = useParams();
@@ -20,6 +36,8 @@ const TaskFormMantenimiento = () => {
   useEffect(() => {
     if (params.id) {
       loadTask(params.id);
+			loadCedulas()
+			loadEquipos()
     }
   }, [params.id]);
 
@@ -83,7 +101,7 @@ const TaskFormMantenimiento = () => {
     setTask({ ...task, [e.target.name]: e.target.value });
 
   return (
-    <div className="h-[calc(100vh-64px)] flex flex-col items-center justify-center pt-20">
+    <div className="flex flex-col items-center justify-center pt-10">
       <form onSubmit={handleSubmit} className="w-2/5">
         <h3 className="font-bold text-2xl my-3 text-white text-center">
             {params.id ? "Actualizar Mantenimiento" : "Publicar Mantenimiento"}
@@ -104,15 +122,16 @@ const TaskFormMantenimiento = () => {
 
         <label className="flex justify-evenly pb-2"> 
           <span className="w-full m-2 h-auto text-center p-3 text-white border border-solid rounded-md  ">Id Equipo Teleco</span>
-          <input
-            type="number"
-            name="id_equipotel"
-            placeholder= {"Id Equipo de Telecomunicaciones"}
-            className="border border-gray-400 p-2 rounded-md block my-2 w-1/2"
-            onChange={handleChange}
-            value={task.id_equipotel}
-            autoFocus
-          />
+          <select 
+						name="id_equipotel" 
+						className="border border-gray-400 p-2 rounded-md block my-2 w-full"
+						onChange={handleChange}
+						>
+							<option value={task.id_equipotel} disabled selected> {task.id_equipotel} </option>
+						{equipos.map((equipo) => (
+							<option key={equipo.id_equipotel} value={equipo.id_equipotel}>{equipo.id_equipotel}</option>
+						))}
+						</select>
           
         </label>
 
@@ -157,12 +176,12 @@ const TaskFormMantenimiento = () => {
         <label className="flex justify-evenly"> 
           <span className="w-full m-2 h-auto text-center p-3 text-white border border-solid rounded-md  ">Fecha Inicio</span>
           <input
-              type="date"
+              type="text"
+              placeholder="AAAA-MM-DD"
               name="fecha_inicio"
-              placeholder="Fecha de Inicio"
               className="border border-gray-400 p-2 rounded-md block my-2 w-full"
               onChange={handleChange}
-              value={task.fecha_inicio}
+              value={task.fecha_inicio.slice(0,10)}
               autoFocus
             />
         </label> 
@@ -170,27 +189,28 @@ const TaskFormMantenimiento = () => {
         <label className="flex justify-evenly"> 
           <span className="w-full m-2 h-auto text-center p-3 text-white border border-solid rounded-md  ">Fecha Finalizacion</span>
           <input
-              type="date"
+              type="text"
+              placeholder="AAAA-MM-DD"
               name="fecha_finalizacion"
-              placeholder="Fecha de finalización"
               className="border border-gray-400 p-2 rounded-md block my-2 w-full"
               onChange={handleChange}
-              value={task.fecha_finalizacion}
+              value={task.fecha_finalizacion.slice(0,10)}
               autoFocus
             />
         </label>
 
-        <label className="flex justify-evenly"> 
+				<label className="flex justify-evenly"> 
           <span className="w-full m-2 h-auto text-center p-3 text-white border border-solid rounded-md  ">Cedula Tecnico Encargado</span>
-          <input
-              type="integer"
-              name="cedula"
-              placeholder="Cedula Tecnico"
-              className="border border-gray-400 p-2 rounded-md block my-2 w-full"
-              onChange={handleChange}
-              value={task.cedula}
-              autoFocus
-            />
+						<select 
+						name="cedula" 
+						className="border border-gray-400 p-2 rounded-md block my-2 w-full"
+						onChange={handleChange}
+						>
+							<option value={task.cedula} disabled selected> {task.cedula} </option>
+						{cedulas.map((cedula) => (
+							<option key={cedula.cedula} value={cedula.cedula}>{cedula.cedula}</option>
+						))}
+						</select>
         </label>
 
         

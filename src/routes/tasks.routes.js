@@ -14,6 +14,11 @@ import {
   updateMantenimiento,
 } from "../controllers/Mantenimientos.controller.js"
 
+import {
+	getAllEquipos,
+	getAllCedulas
+} from "../controllers/equipos_cedulas.controller.js"
+
 const router = Router();
 
 // create a task
@@ -38,5 +43,10 @@ router.get("/mantenimiento/:id", getMantenimiento);
 router.put("/mantenimiento/:id", updateMantenimiento);
 
 router.delete("/mantenimiento/:id", deleteMantenimiento);
+
+// cedulas e ID de equipos
+
+router.get("/cedulas", getAllCedulas)
+router.get("/equipos", getAllEquipos)
 
 export default router;

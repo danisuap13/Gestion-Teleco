@@ -17,7 +17,7 @@ export const createMantenimiento = async (req, res, next) => {
 
 export const getAllMantenimientos = async (req, res, next) => {
   try {
-    const allMantenimientos = await pool.query("SELECT * FROM mantenimiento");
+    const allMantenimientos = await pool.query("SELECT * FROM mantenimiento order by id_mantenimiento asc");
     res.json(allMantenimientos.rows);
   } catch (error) {
     next(error);

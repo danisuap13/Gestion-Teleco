@@ -26,13 +26,13 @@ export default function ButtonAppBar() {
       ) : (
         <div>
           <button
-            className="bg-slate-200 text-black font-bold py-2 px-4 mr-4 rounded-lg my-2 "
+            className="bg-white text-black font-bold py-2 px-4 mr-4 rounded-lg my-2 "
             onClick={() => navigate("/mantenimiento/new")}
           >
             Programar Mantenimiento
           </button>
           <button
-            className="bg-slate-200 text-black font-bold py-2 px-4 rounded-lg my-2"
+            className="bg-white text-black font-bold py-2 px-4 rounded-lg my-2"
             onClick={() => navigate("/falla/new")}
           >
             Añadir Falla
