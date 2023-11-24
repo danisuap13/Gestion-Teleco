@@ -20,23 +20,22 @@ const TasksList = () => {
   };
 
   useEffect(() => {
-    loadTasks();
-  }, []);
-  
-  useEffect(() => {
-    loadMantenimientos();
-  }, []);
+		loadTasks();
+		loadMantenimientos();
+ }, []);
 
   return (
     <>
     <div className="flex">
-      <div>
+      <div className="w-1/2 p-4">
+				<h1 className="text-white font-bold text-3xl text-center">Fallas</h1>
         {tasks.map((task) => (
-          <TaskCard key={task.id_falla} task={task} />
-        ))}
+					<TaskCard key={task.id_falla} task={task} />
+					))}
       </div>
-      <div>
-        {mantenimientos.map((mantenimiento) => (
+      <div className="w-1/2 p-4">
+				<h1 className="text-white font-bold text-3xl text-center">Mantenimientos</h1>
+        {mantenimientos.sort().map((mantenimiento) => (
           <TaskCardMantenimiento key={mantenimiento.id_mantenimiento} mantenimiento={mantenimiento} />
         ))}
       </div>
