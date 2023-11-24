@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import TaskCard from "./TaskCard";
+import TaskCardMantenimiento from "./TaskCardMantenimiento";
 
 const TasksList = () => {
   const [tasks, setTasks] = useState([]);
@@ -20,6 +21,9 @@ const TasksList = () => {
 
   useEffect(() => {
     loadTasks();
+  }, []);
+  
+  useEffect(() => {
     loadMantenimientos();
   }, []);
 
@@ -33,7 +37,7 @@ const TasksList = () => {
       </div>
       <div>
         {mantenimientos.map((mantenimiento) => (
-          <TaskCard key={mantenimiento.id_mantenimiento} mantenimiento={mantenimiento} />
+          <TaskCardMantenimiento key={mantenimiento.id_mantenimiento} mantenimiento={mantenimiento} />
         ))}
       </div>
     </div>
