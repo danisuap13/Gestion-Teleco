@@ -35,10 +35,10 @@ const TaskForm = () => {
   const params = useParams();
 
   useEffect(() => {
+		loadCedulas()
+		loadEquipos()
     if (params.id) {
       loadTask(params.id);
-			loadCedulas()
-			loadEquipos()
     }
   }, [params.id]);
 

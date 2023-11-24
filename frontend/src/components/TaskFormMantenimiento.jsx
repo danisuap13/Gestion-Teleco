@@ -34,10 +34,10 @@ const TaskFormMantenimiento = () => {
   const params = useParams();
 
   useEffect(() => {
+		loadCedulas()
+		loadEquipos()
     if (params.id) {
       loadTask(params.id);
-			loadCedulas()
-			loadEquipos()
     }
   }, [params.id]);
 
@@ -132,7 +132,6 @@ const TaskFormMantenimiento = () => {
 							<option key={equipo.id_equipotel} value={equipo.id_equipotel}>{equipo.id_equipotel}</option>
 						))}
 						</select>
-          
         </label>
 
         <label className="flex-col items-center justify-center pt-10"> 
